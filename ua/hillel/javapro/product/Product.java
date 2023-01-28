@@ -5,13 +5,25 @@ import java.util.Date;
 
 public class Product {
 
+    private static int count = 0;
+
     private int id;
     private String type;
     private Double price;
     private boolean discount;
     private LocalDate createDate;
 
+    public Product(String type, Double price, boolean discount, LocalDate createDate) {
+        // при создании нового продукта добавляем ему следующий номер
+        count ++;
+        this.id = count;
+        this.type = type;
+        this.price = price;
+        this.discount = discount;
+        this.createDate = createDate;
+    }
     public Product(int id, String type, Double price, boolean discount, LocalDate createDate) {
+        // для создания списков дубликатов
         this.id = id;
         this.type = type;
         this.price = price;
@@ -19,12 +31,6 @@ public class Product {
         this.createDate = createDate;
     }
 
-    public Product(String type, Double price, boolean discount, LocalDate createDate) {
-        this.type = type;
-        this.price = price;
-        this.discount = discount;
-        this.createDate = createDate;
-    }
 
     public Product(String type, Double price, boolean sale) {
         this.type = type;
@@ -59,7 +65,8 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "type='" + type + '\'' +
+                "id=" + id +
+                ", type='" + type + '\'' +
                 ", price=" + price +
                 ", discount=" + discount +
                 ", createDate=" + createDate +
